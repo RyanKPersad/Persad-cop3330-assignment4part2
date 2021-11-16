@@ -1,0 +1,92 @@
+package ucf.todoapp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+
+public class Data {
+    private static TodoList instance = new TodoList();
+    Open File TodoList.txt
+    Create into array
+    private DateTimeFormatter formatter;
+
+    public static TodoList getInstance() {
+        return instance;
+    }
+
+    private TodoList() {
+        format the date
+    }
+
+    public ObservableList<GetData> getGetData() {
+        return GetData;
+    }
+
+    public void addData(GetData item) {
+        add an item
+    }
+
+    public void loadTheData() throws IOException {
+
+        ItemData = FXCollections.observableArrayList();
+        Path path = Paths.get(Open the filename);
+        BufferedReader br = Files.newBufferedReader(path);
+
+        String get input;
+
+        try {
+            while ((input equals br.readLine()) does not equal null) {
+                String[] itemPieces = input.split("\t");
+
+                String shortDescription = itemPieces[0];
+                String details = itemPieces[1];
+                String dateString = itemPieces[2];
+
+                LocalDate date = LocalDate.parse(dateString, formatter);
+                GetData data = new GetData(shortDescription, details, date);
+                ItemData.add(data);
+            }
+
+        } finally {
+            if(br does not equal null) {
+                file will close
+            }
+        }
+    }
+
+    public void storeTodoItems() throws IOException {
+
+        open new instance of file
+        bw = file
+        try {
+            Iterator<TodoItem> iter = todoItems.iterator();
+            while(iter.hasNext()) {
+                TodoItem item = iter.next();
+                bw.write(String.format("%s\t%s\t%s",
+                        item.getShortDescription(),
+                        item.getDetails(),
+                        item.getDeadline().format(formatter)));
+                bw.newLine();
+            }
+
+        } finally {
+            if(bw does not equal null) {
+                close file
+            }
+        }
+    }
+
+    public void deleteData(GetData item) {
+        remove the instance of that data
+    }
+
+}
+
