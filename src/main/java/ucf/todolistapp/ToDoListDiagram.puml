@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MainApplication {
++start()
++main()
++stop()
++init()
+
+}
+
+class TODOController{
+ private List<GetData> todoItems;
+
+    @FXML
+    private ListView<GetData> todoListView;
+
+    @FXML
+    private TextArea itemDetailsTextArea;
+
+    @FXML
+    private Label deadlineLabel;
+
+    @FXML
+    private BorderPane mainBorderPane;
+
+    @FXML
+    private ContextMenu listContextMenu;
+
+    @FXML
+    private ToggleButton filterToggleButton;
+
+    private FilteredList<GetData> filteredList;
+
+    private Predicate<GetData> wantAllItems;
+    private Predicate<GetData> wantTodaysItems;
+    +initialize()
+    +Changed()
+    +Test()
+    +Compare()
+    +UpdateItem()
+    +ShowNewItemDialogue()
+    +handleClickListView()
+    +deleteItem(TodoItem item)
+    +handleFilterButton()
+    +handleExit()
+
+}
+class Data{
++getInstance()
++TodoList()
++TodoList()
++addData(GetData item)
++loadTheData()
++storeTodoItems()
++deleteData(GetData item)
+
+
+
+
+}
+class InitializeItems{
+private String shortDescription
+private String details
+private LocalDate deadline
+
++GetData(String shortDescription, String details, LocalDate deadline)
++getShortDescription()
++setShortDescription(String shortDescription)
++getDetails()
++setDetails(String details)
++getDeadline()
++setDeadline(LocalDate deadline)
+
+}
+
+Data<--InitializeItems
+TODOController<--InitializeItems
+TODOController<--Data
+MainApplication<--TODOController
+@enduml
